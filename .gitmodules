@@ -3,4 +3,4 @@
 	url = git@github.com:bfgroup/Lyra.git
 [submodule "external/fe"]
 	path = external/fe
-	url = ../fe.git
+	url = git@github.com:leissa/fe.git

@@ -16,7 +16,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/c4)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
@@ -27,6 +27,8 @@ if(WIN32)
 else()
     add_compile_options(-Wall -Wextra)
 endif()
+
+set(FE_ABSL ON)
 
 set(FE_ABSL OFF)
 if(FE_ABSL)
@@ -51,6 +53,7 @@ target_sources(let
         include/let/lexer.h
         include/let/tok.h
 )
+
 target_link_libraries(let PRIVATE fe)
 target_include_directories(let
     PUBLIC
