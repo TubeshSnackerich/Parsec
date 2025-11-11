@@ -1,0 +1,8 @@
+cd build
+cmake ..
+cmake --build .
+./bin/let
+----------------------------------
+mkdir build
+cmake -S . -B build
+cmake --build build
