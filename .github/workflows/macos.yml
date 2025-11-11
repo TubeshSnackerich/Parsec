@@ -1,0 +1,29 @@
+name: macos
+
+on:
+  push:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    name: Build and test ${{matrix.build-type}} mode
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        build-type: [Debug, Release]
+
+    steps:
+      - name: Clone recursively
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Configure
+        run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{matrix.build-type}}
+
+      - name: Build
+        run: cmake --build ${{github.workspace}}/build -v
+
+      - name: Test
+        run: ${{github.workspace}}/build/bin/let ${{github.workspace}}/test/test.let
